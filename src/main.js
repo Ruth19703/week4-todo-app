@@ -485,3 +485,65 @@ taskList.addEventListener("change", function (event) {
   saveTasks();
   renderTasks();
 });
+
+
+
+// WEEKEND GOALS FEATURE
+
+const goalInput = document.querySelector("#goalInput");
+const saveGoalBtn = document.querySelector("#saveGoalBtn");
+const goalProgress = document.querySelector("#goalProgress");
+const goalProgressBar = document.querySelector("#goalProgressBar");
+const goalMessage = document.querySelector("#goalMessage");
+
+// Load the saved goal or use 5 as the default
+let weekendGoal = Number(localStorage.getItem("weekendGoal")) || 5;
+
+goalInput.value = weekendGoal;
+
+// Save a new goal
+saveGoalBtn.addEventListener("click", function () {
+  const newGoal = Number(goalInput.value);
+
+  if (!Number.isInteger(newGoal) || newGoal < 1) {
+    goalInput.setCustomValidity("Enter a whole number greater than 0.");
+    goalInput.reportValidity();
+    return;
+  }
+
+  goalInput.setCustomValidity("");
+
+  weekendGoal = newGoal;
+
+  localStorage.setItem("weekendGoal", weekendGoal);
+
+  updateGoalProgress();
+});
+
+// Update goal progress
+function updateGoalProgress() {
+  const completedTasks = tasks.filter(function (task) {
+    return task.completed;
+  }).length;
+
+  const percentage = Math.min(
+    (completedTasks / weekendGoal) * 100,
+    100
+  );
+
+  goalProgress.textContent =
+    `${completedTasks} of ${weekendGoal} tasks completed`;
+
+  goalProgressBar.style.width = `${percentage}%`;
+
+  if (completedTasks >= weekendGoal) {
+    goalMessage.textContent =
+      "🎉 You did it! Enjoy your weekend!";
+  } else {
+    goalMessage.textContent =
+      `${weekendGoal - completedTasks} more tasks to reach your goal.`;
+  }
+}
+
+// Show the goal progress when the app opens
+updateGoalProgress();
