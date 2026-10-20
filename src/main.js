@@ -469,6 +469,8 @@ function renderTasks() {
 renderTasks();
 
 taskList.addEventListener("change", function (event) {
+
+    updateGoalProgress();
   if (event.target.dataset.action !== "toggle") return;
 
   const taskItem = event.target.closest("[data-id]");
@@ -543,7 +545,8 @@ function updateGoalProgress() {
     goalMessage.textContent =
       `${weekendGoal - completedTasks} more tasks to reach your goal.`;
   }
+  updateGoalProgress();
 }
 
-// Show the goal progress when the app opens
-updateGoalProgress();
+
+
