@@ -271,6 +271,52 @@
           </p>
         </section>
 
+        
+<!-- Weekend Goals -->
+<section class="bg-white rounded-2xl p-5 shadow-md my-6">
+  <h2 class="text-xl font-bold text-green-800 mb-2">
+    🌟 My Weekend Goal
+  </h2>
+
+  <p class="text-gray-600 mb-4">
+    How many tasks do you want to complete?
+  </p>
+
+  <div class="flex gap-3 items-center">
+    <input
+      type="number"
+      id="goalInput"
+      min="1"
+      value="5"
+      class="border border-gray-300 rounded-lg p-3 w-24"
+      aria-label="Number of tasks to complete"
+    />
+
+    <button
+      type="button"
+      id="saveGoalBtn"
+      class="bg-green-700 text-white rounded-lg px-4 py-3 hover:bg-green-800"
+    >
+      Save Goal
+    </button>
+  </div>
+
+  <p id="goalProgress" class="text-gray-700 mt-4">
+    0 of 5 tasks completed
+  </p>
+
+  <div class="w-full bg-gray-200 rounded-full h-3 mt-3">
+    <div
+      id="goalProgressBar"
+      class="bg-green-600 h-3 rounded-full"
+      style="width: 0%"
+    ></div>
+  </div>
+
+  <p id="goalMessage" class="font-semibold text-green-700 mt-3"></p>
+</section>
+
+
         <!-- Footer -->
         <footer class="py-8 text-center text-sm text-stone-500">
           <p class="flex items-center justify-center gap-2">
