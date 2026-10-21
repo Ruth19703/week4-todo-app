@@ -1,4 +1,4 @@
-import "./style.css";
+import "./styles.css";
 
 // 1. Get HTML elements
 
@@ -466,11 +466,12 @@ function renderTasks() {
 }
 
 // Show saved tasks when the app opens
+
 renderTasks();
 
 taskList.addEventListener("change", function (event) {
 
-    updateGoalProgress();
+
   if (event.target.dataset.action !== "toggle") return;
 
   const taskItem = event.target.closest("[data-id]");
@@ -486,6 +487,7 @@ taskList.addEventListener("change", function (event) {
 
   saveTasks();
   renderTasks();
+  updateGoalProgress();
 });
 
 
@@ -499,11 +501,13 @@ const goalProgressBar = document.querySelector("#goalProgressBar");
 const goalMessage = document.querySelector("#goalMessage");
 
 // Load the saved goal or use 5 as the default
+
 let weekendGoal = Number(localStorage.getItem("weekendGoal")) || 5;
 
 goalInput.value = weekendGoal;
 
 // Save a new goal
+
 saveGoalBtn.addEventListener("click", function () {
   const newGoal = Number(goalInput.value);
 
@@ -523,9 +527,10 @@ saveGoalBtn.addEventListener("click", function () {
 });
 
 // Update goal progress
+
 function updateGoalProgress() {
   const completedTasks = tasks.filter(function (task) {
-    return task.completed;
+    return task.completed; 
   }).length;
 
   const percentage = Math.min(
@@ -545,7 +550,7 @@ function updateGoalProgress() {
     goalMessage.textContent =
       `${weekendGoal - completedTasks} more tasks to reach your goal.`;
   }
-  updateGoalProgress();
+ 
 }
 
 
